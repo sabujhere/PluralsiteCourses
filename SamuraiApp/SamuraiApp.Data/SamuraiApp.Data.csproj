@@ -132,6 +132,10 @@
     <Compile Include="Migrations\20191114033204_JoinTable.designer.cs">
       <DependentUpon>20191114033204_JoinTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20191114034440_SecertIdentity.cs" />
+    <Compile Include="Migrations\20191114034440_SecertIdentity.designer.cs">
+      <DependentUpon>20191114034440_SecertIdentity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SamuraiContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SamuraiContext.cs" />

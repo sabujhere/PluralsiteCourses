@@ -18,6 +18,9 @@ namespace SamuraiApp.Data
         {
             modelBuilder.Entity<SamuraiBattle>()
                 .HasKey(s => new {s.BattleId, s.SamuraiId});
+
+            //modelBuilder.Entity<Samurai>()
+            //    .Property(s => s.SecretIdentity).IsRequired();
             base.OnModelCreating(modelBuilder);
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
