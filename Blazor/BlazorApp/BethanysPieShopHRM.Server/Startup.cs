@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BethanysPieShopHRM.Server.Data;
+using BethanysPieShopHRM.Server.Services;
 
 namespace BethanysPieShopHRM.Server
 {
@@ -27,8 +28,13 @@ namespace BethanysPieShopHRM.Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
+            services.AddHttpClient<IEmployeeDataService, EmployeeDataService>(
+                client =>
+                {
+                    client.BaseAddress = new Uri("https://localhost:44340");
+                });
+            services.AddServerSideBlazor().AddCircuitOptions(option=>option.DetailedErrors = true);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
