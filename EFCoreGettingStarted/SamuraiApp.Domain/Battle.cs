@@ -7,7 +7,7 @@ namespace SamuraiApp.Domain
     {
         public Battle()
         {
-            SamuraiBattles = new List<SamuraiBattle>(`);
+            SamuraiBattles = new List<SamuraiBattle>();
         }
 
         public int Id { get; set; }
