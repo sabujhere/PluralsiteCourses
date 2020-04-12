@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SamuraiApp.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace SamuraiApi
 {
@@ -25,6 +27,8 @@ namespace SamuraiApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddDbContext<SamuraiContext>(opt=> 
+                opt.UseSqlServer(Configuration.GetConnectionString("SamuraiConnex")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
