@@ -9,17 +9,28 @@ namespace SamuraiApp.Data
 {
     public sealed class SamuraiContext : DbContext
     {
-        //needed for the console app
+        private bool useInternalConnectionString = false;
         public SamuraiContext()
         {
-            
+            useInternalConnectionString = true;
         }
-
-        public SamuraiContext(DbContextOptions<SamuraiContext> options)
+        public SamuraiContext(DbContextOptions<SamuraiContext> options, bool disableChangeTracking)
         :base(options)
         {
-            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            if(disableChangeTracking)
+                ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (useInternalConnectionString)
+            {
+                optionsBuilder
+                    .UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = SamuraiAppData");
+            }
+
+        }
+
         public DbSet<Samurai> Samurais { get; set; }
         public DbSet<Quote> Quotes { get; set; }
         public DbSet<Clan> Clans { get; set; }
